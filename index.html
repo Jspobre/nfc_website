@@ -8,94 +8,16 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="style.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,200;0,400;0,800;1,300&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
-<style>
-    body {
-        background-color: rgb(254, 246, 255);
-    }
 
-    h1,
-    h2,
-    p, label{
-        font-family: 'Roboto', sans-serif;
-    }
-
-    .gform {
-        width: 750px;
-        border: 1px solid #e6e4e4;
-        padding: 20px;
-        border-radius: 8px;
-        background-color: white;
-    }
-
-    .gform1 {
-        width: 750px;
-        border: 1px solid #e6e4e4;
-        padding: 20px;
-        border-radius: 8px;
-        background-color: white;
-        z-index: 2;
-    }
-
-    .gform2{
-        width: 750px;
-        border: 1px solid #e6e4e4;
-        padding: 20px;
-        border-radius: 8px;
-        background-color: white;
-        z-index: 2;
-    }
-
-    .gform-header {
-        position: relative;
-        z-index: 50;
-        width: 750px;
-        background-color: rgb(103, 58, 183);
-        padding: 4px;
-        border-radius: 8px 8px 0 0;
-        margin-bottom: -6px;
-    }
-
-    .form-control {
-        border: none;
-        border-bottom: 2px solid #e2e0e0;
-        border-radius: 0;
-        outline: none;
-        box-shadow: none;
-        background-color: transparent;
-        height: 40px;
-        width: 350px;
-        padding: 0;
-    }
-
-    .form-container {
-        max-height: 1000px; /* Set a fixed height for scrolling */
-        overflow-y: auto; /* Enable vertical scrolling */
-    }
-
-    .submit {
-        border-radius: 5px;
-        color: white;
-        font-family: 'Roboto', sans-serif;
-        display: block;
-        margin: 20px auto;
-        background-color: rgb(103, 58, 183);
-        border: none;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-    .small-text {
-        font-size: smaller;
-        color: rgb(104, 94, 94);
-    }
-</style>
 <body>
 
     <nav class="navbar" style="background-color: rgb(103, 58, 183); height: 25px;">
@@ -116,9 +38,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Repeat the following container for each input field -->
-            <!-- ... -->
             <div class="container-fluid mt-2">
                 <div class="gform mx-auto">
                     <div class="form-group mb-3">
@@ -127,7 +46,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="container-fluid mt-2">
                 <div class="gform mx-auto">
                     <div class="form-group mb-3">
@@ -137,98 +55,92 @@
                         
                     </div>
                 </div>
-            </div>
-            
+            </div>      
             <div class="container-fluid mt-2">
                 <div class="gform2 mx-auto">
                     <div class="form-group mb-3">
                         <label for="yesOption" class="form-label">Irregular Student</label>
                         <div>
-                            <input type="radio" id="yesOption" name="irregularStudent" value="yes">
+                            <input type="radio" class="radio" id="yesOption" name="irregularStudent" value="yes">
                             <label for="yesOption" class="small-text">Yes</label>
                         </div>
                         <div>
-                            <input type="radio" id="noOption" name="irregularStudent" value="no">
+                            <input type="radio" class="radio"  id="noOption" name="irregularStudent" value="no">
                             <label for="noOption" class="small-text">No</label>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            
-
             <div class="container-fluid mt-2">
                 <div class="gform2 mx-auto">
                     <div class="form-group mb-3">
                         <label for="course_option" class="form-label">Course</label>
                         <div>
-                            <input type="radio" id="bscs" name="bscs" value="bscs">
+                            <input type="radio" class="radio" id="bscs" name="course" value="bscs">
                             <label for="bscs" class="small-text">Bachelor of Science in Computer Science</label>
                         </div>
                         <div>
-                            <input type="radio" id="bsis" name="bsis" value="bsis">
+                            <input type="radio" class="radio" id="bsis" name="course" value="bsis">
                             <label for="bsis" class="small-text">Bachelor of Science in Information System</label>
                         </div>
                         <div>
-                            <input type="radio" id="bsit" name="bsit" value="bsit">
+                            <input type="radio" class="radio" id="bsit" name="course" value="bsit">
                             <label for="bsit" class="small-text">Bachelor of Science in Information Technology</label>
                         </div>
                         <div>
-                            <input type="radio" id="bsita" name="bsita" value="bsita">
+                            <input type="radio" class="radio" id="bsita" name="course" value="bsita">
                             <label for="bsita" class="small-text">Bachelor of Science in Information Technology major in Animation</label>
                         </div>
                     </div>
                 </div>
             </div>
-
-                       <div class="container-fluid mt-2">
+            <div class="container-fluid mt-2">
                 <div class="gform2 mx-auto">
                     <div class="form-group mb-3">
-                        <label for="course_option" class="form-label">Year Level</label>
+                        <label for="year_option" class="form-label">Year Level</label>
                         <div>
-                            <input type="radio" id="1" name="1" value="1">
+                            <input type="radio" class="radio" id="1" name="year" value="1">
                             <label for="1" class="small-text">1st Year</label>
                         </div>
                         <div>
-                            <input type="radio" id="2" name="2" value="2">
+                            <input type="radio" class="radio" id="2" name="year" value="2">
                             <label for="2" class="small-text">2nd Year</label>
                         </div>
                         <div>
-                            <input type="radio" id="3" name="3" value="3">
+                            <input type="radio" class="radio" id="3" name="year" value="3">
                             <label for="3" class="small-text">3rd Year</label>
                         </div>
                         <div>
-                            <input type="radio" id="4" name="4" value="4">
+                            <input type="radio" class="radio" id="4" name="year" value="4">
                             <label for="4" class="small-text">4th Year</label>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            
+            </div>          
             <div class="container-fluid mt-2">
                 <div class="gform2 mx-auto">
                     <div class="form-group mb-3">
-                        <label for="course_option" class="form-label">Block</label>
+                        <label for="block_option" class="form-label">Block</label>
                         <div>
-                            <input type="radio" id="A" name="A" value="A">
+                            <input type="radio" class="radio" id="A" name="block" value="A">
                             <label for="A" class="small-text">A</label>
                         </div>
                         <div>
-                            <input type="radio" id="B" name="B" value="B">
+                            <input type="radio" class="radio" id="B" name="block" value="B">
                             <label for="B" class="small-text">B</label>
                         </div>
                         <div>
-                            <input type="radio" id="C" name="C" value="C">
-                            <label for="" class="small-text">C</label>
+                            <input type="radio" class="radio" id="C" name="block" value="C">
+                            <label for="C" class="small-text">C</label>
                         </div>
                         <div>
-                            <input type="radio" id="D" name="D" value="D">
+                            <input type="radio" class="radio" id="D" name="block" value="D">
                             <label for="D" class="small-text">D</label>
                         </div>
                     </div>
                 </div>
             </div>
+            
 
         
 
@@ -240,5 +152,57 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDfNr3VPTj-yzgBK9BLjNiwEQ11ITiTp4E",
+        authDomain: "nfc-app-fb987.firebaseapp.com",
+        databaseURL: "https://nfc-app-fb987-default-rtdb.firebaseio.com",
+        projectId: "nfc-app-fb987",
+        storageBucket: "nfc-app-fb987.appspot.com",
+        messagingSenderId: "533389666766",
+        appId: "1:533389666766:web:fa6c22da78b5d0a6bbe39f"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Function to handle form submission
+    const handleSubmit = async () => {
+        // Get form values
+        const studentNum = document.getElementById("student_num").value;
+        const fullName = document.getElementById("full_name").value;
+        const irregularStudent = document.querySelector('input[name="irregularStudent"]:checked').value;
+        const course = document.querySelector('input[name="course"]:checked').value;
+        const year = document.querySelector('input[name="year"]:checked').value;
+        const block = document.querySelector('input[name="block"]:checked').value;
+
+        // Create a data object
+        const data = {
+            studentNum,
+            fullName,
+            irregularStudent,
+            course,
+            year,
+            block
+        };
+
+        try {
+            // Add data to Firestore collection
+            const docRef = await addDoc(collection(db, "students"), data);
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    };
+
+    // Add an event listener to the submit button
+    document.querySelector('.submit').addEventListener('click', handleSubmit);
+</script>
 </html>
+

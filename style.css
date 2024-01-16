@@ -1,0 +1,129 @@
+@media only screen and (max-width: 600px) {
+    /* Adjust styles for smaller screens here */
+
+    .gform,
+    .gform1,
+    .gform2 {
+        width: 100%; /* Make form containers full width for small screens */
+    }
+
+    .form-control {
+        width: 100%; /* Make form controls full width for small screens */
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    /* Adjust styles for medium screens here */
+
+    .gform,
+    .gform1,
+    .gform2 {
+        width: 70%; /* You can adjust the width for medium screens */
+    }
+
+    .form-control {
+        width: 100%; /* Make form controls full width for medium screens */
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    /* Adjust styles for large screens here */
+
+    .gform,
+    .gform1,
+    .gform2 {
+        width: 50%; /* You can adjust the width for large screens */
+    }
+
+    .form-control {
+        width: 70%; /* You can adjust the width for large screens */
+    }
+}
+body {
+    background-color: rgb(254, 246, 255);
+}
+
+h1,
+h2,
+p, label{
+    font-family: 'Roboto', sans-serif;
+}
+
+.gform {
+    width: 750px;
+    border: 1px solid #e6e4e4;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.gform1 {
+    width: 750px;
+    border: 1px solid #e6e4e4;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: white;
+    z-index: 2;
+}
+
+.gform2{
+    width: 750px;
+    border: 1px solid #e6e4e4;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: white;
+    z-index: 2;
+}
+
+.gform-header {
+    position: relative;
+    z-index: 50;
+    width: 750px;
+    background-color: rgb(103, 58, 183);
+    padding: 4px;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: -6px;
+}
+
+.form-control {
+    border: none;
+    border-bottom: 2px solid #e2e0e0;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+    height: 40px;
+    width: 350px;
+    padding: 0;
+    outline: none;
+    
+}
+    
+.form-container {
+    max-height: 1000px; /* Set a fixed height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.submit {
+    border-radius: 5px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    display: block;
+    margin: 20px auto;
+    background-color: rgb(103, 58, 183);
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.small-text {
+    font-size: smaller;
+    color: rgb(104, 94, 94);
+}
+body, h1, h2, p, label, small, input {
+font-family: 'Roboto', sans-serif;
+}
+    .radio{
+        accent-color: black;
+    }
