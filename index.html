@@ -14,7 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-firestore.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,200;0,400;0,800;1,300&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 
@@ -28,14 +29,12 @@
     <div class="form-container mt-4">
         <form>
             <div class="container-fluid mt-2">
-                <div class="gform-header mx-auto"></div>
-                <div class="gform1 mx-auto">
-                    <div class="form-group mb-3 text-center">
+                <div class="gform1 mx-auto text-center">
                         <h2>Attendance</h2>
                         <p>
                             Automated Attendance Monitoring and Tracking System using NFC Tags
                         </p>
-                    </div>
+         
                 </div>
             </div>
             <div class="container-fluid mt-2">
@@ -59,13 +58,13 @@
             <div class="container-fluid mt-2">
                 <div class="gform2 mx-auto">
                     <div class="form-group mb-3">
-                        <label for="yesOption" class="form-label">Irregular Student</label>
+                        <label for="isIrregular" class="form-label">Irregular Student</label>
                         <div>
-                            <input type="radio" class="radio" id="yesOption" name="irregularStudent" value="yes">
+                            <input type="radio" class="radio" id="yesOption" name="irregularStudent" value="Yes">
                             <label for="yesOption" class="small-text">Yes</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio"  id="noOption" name="irregularStudent" value="no">
+                            <input type="radio" class="radio"  id="noOption" name="irregularStudent" value="No">
                             <label for="noOption" class="small-text">No</label>
                         </div>
                     </div>
@@ -76,19 +75,19 @@
                     <div class="form-group mb-3">
                         <label for="course_option" class="form-label">Course</label>
                         <div>
-                            <input type="radio" class="radio" id="bscs" name="course" value="bscs">
+                            <input type="radio" class="radio" id="bscs" name="course" value="Bachelor of Science in Computer Science">
                             <label for="bscs" class="small-text">Bachelor of Science in Computer Science</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="bsis" name="course" value="bsis">
+                            <input type="radio" class="radio" id="bsis" name="course" value="Bachelor of Science in Information System">
                             <label for="bsis" class="small-text">Bachelor of Science in Information System</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="bsit" name="course" value="bsit">
+                            <input type="radio" class="radio" id="bsit" name="course" value="Bachelor of Science in Information Technology">
                             <label for="bsit" class="small-text">Bachelor of Science in Information Technology</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="bsita" name="course" value="bsita">
+                            <input type="radio" class="radio" id="bsita" name="course" value="Bachelor of Science in Information Technology major in Animation">
                             <label for="bsita" class="small-text">Bachelor of Science in Information Technology major in Animation</label>
                         </div>
                     </div>
@@ -99,19 +98,19 @@
                     <div class="form-group mb-3">
                         <label for="year_option" class="form-label">Year Level</label>
                         <div>
-                            <input type="radio" class="radio" id="1" name="year" value="1">
+                            <input type="radio" class="radio" id="1" name="year" value="1st Year">
                             <label for="1" class="small-text">1st Year</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="2" name="year" value="2">
+                            <input type="radio" class="radio" id="2" name="year" value="2nd Year">
                             <label for="2" class="small-text">2nd Year</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="3" name="year" value="3">
+                            <input type="radio" class="radio" id="3" name="year" value="3rd Year">
                             <label for="3" class="small-text">3rd Year</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="4" name="year" value="4">
+                            <input type="radio" class="radio" id="4" name="year" value="4th Year">
                             <label for="4" class="small-text">4th Year</label>
                         </div>
                     </div>
@@ -144,7 +143,7 @@
 
         
 
-            <button class="submit mx-auto">Submit</button>
+            <button class="submit">Submit</button>
         </form>
     </div>
 
@@ -152,10 +151,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+<!-- ... (your HTML code remains unchanged) ... -->
+
+<!-- ... (your HTML code remains unchanged) ... -->
 <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -172,37 +174,71 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Function to handle form submission
-    const handleSubmit = async () => {
-        // Get form values
-        const studentNum = document.getElementById("student_num").value;
-        const fullName = document.getElementById("full_name").value;
-        const irregularStudent = document.querySelector('input[name="irregularStudent"]:checked').value;
-        const course = document.querySelector('input[name="course"]:checked').value;
-        const year = document.querySelector('input[name="year"]:checked').value;
-        const block = document.querySelector('input[name="block"]:checked').value;
 
-        // Create a data object
-        const data = {
-            studentNum,
-            fullName,
-            irregularStudent,
-            course,
-            year,
-            block
-        };
+    // Clear the form
 
-        try {
-            // Add data to Firestore collection
-            const docRef = await addDoc(collection(db, "students"), data);
-            console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-    };
 
     // Add an event listener to the submit button
-    document.querySelector('.submit').addEventListener('click', handleSubmit);
+    document.querySelector('.submit').addEventListener('click', async (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+
+    // Get form values
+    const student_num = document.getElementById('student_num').value;
+    const full_name = document.getElementById('full_name').value;
+    const irregularStudent = document.querySelector('input[name="irregularStudent"]:checked').value;
+    const course = document.querySelector('input[name="course"]:checked').value;
+    const year = document.querySelector('input[name="year"]:checked').value;
+    const block = document.querySelector('input[name="block"]:checked').value;
+
+    try {
+        // Add data to Firestore collection
+        await addDoc(collection(db, 'students'), {
+            block: block,
+            course: course,
+            full_name: full_name,
+            isIrregular: irregularStudent,
+            student_num: student_num,
+            year_level: year
+        });
+
+        // Show success alert using Swal
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Student added successfully.',
+            showConfirmButton: false,
+            timer: 2000 // Close after 2 seconds
+        });
+
+        // Clear the form
+        document.getElementById('student_num').value = '';
+        document.getElementById('full_name').value = '';
+        document.querySelector('input[name="irregularStudent"]:checked').checked = false;
+        document.querySelector('input[name="course"]:checked').checked = false;
+        document.querySelector('input[name="year"]:checked').checked = false;
+        document.querySelector('input[name="block"]:checked').checked = false;
+
+    } catch (error) {
+        console.error('Error adding document: ', error);
+
+        // Show error alert using Swal
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Error adding student.',
+            showConfirmButton: false,
+            timer: 2000 // Close after 2 seconds
+        });
+    }
+});
+
+
+
 </script>
+
+</html>
+
+
+
 </html>
 

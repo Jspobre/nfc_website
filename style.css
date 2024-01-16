@@ -1,83 +1,27 @@
-@media only screen and (max-width: 600px) {
-    /* Adjust styles for smaller screens here */
-
-    .gform,
-    .gform1,
-    .gform2 {
-        width: 100%; /* Make form containers full width for small screens */
-    }
-
-    .form-control {
-        width: 100%; /* Make form controls full width for small screens */
-    }
-}
-
-@media only screen and (min-width: 601px) and (max-width: 992px) {
-    /* Adjust styles for medium screens here */
-
-    .gform,
-    .gform1,
-    .gform2 {
-        width: 70%; /* You can adjust the width for medium screens */
-    }
-
-    .form-control {
-        width: 100%; /* Make form controls full width for medium screens */
-    }
-}
-
-@media only screen and (min-width: 993px) {
-    /* Adjust styles for large screens here */
-
-    .gform,
-    .gform1,
-    .gform2 {
-        width: 50%; /* You can adjust the width for large screens */
-    }
-
-    .form-control {
-        width: 70%; /* You can adjust the width for large screens */
-    }
-}
 body {
     background-color: rgb(254, 246, 255);
 }
 
-h1,
-h2,
-p, label{
+h1, h2, p, label {
     font-family: 'Roboto', sans-serif;
 }
 
-.gform {
-    width: 750px;
+.gform, .gform1, .gform2 {
+    width: 100%;
+    max-width: 750px;
     border: 1px solid #e6e4e4;
     padding: 20px;
     border-radius: 8px;
     background-color: white;
+    margin: 0 auto; /* Center the form on the page */
 }
-
-.gform1 {
-    width: 750px;
-    border: 1px solid #e6e4e4;
-    padding: 20px;
-    border-radius: 8px;
+.gform1{
     background-color: white;
-    z-index: 2;
-}
+    border-top: 8px solid  rgb(103, 58, 183);
 
-.gform2{
-    width: 750px;
-    border: 1px solid #e6e4e4;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: white;
-    z-index: 2;
 }
-
 .gform-header {
     position: relative;
-    z-index: 50;
     width: 750px;
     background-color: rgb(103, 58, 183);
     padding: 4px;
@@ -89,19 +33,17 @@ p, label{
     border: none;
     border-bottom: 2px solid #e2e0e0;
     border-radius: 0;
-    outline: none;
     box-shadow: none;
     background-color: transparent;
     height: 40px;
-    width: 350px;
+    width: 100%;
     padding: 0;
     outline: none;
-    
 }
-    
+
 .form-container {
-    max-height: 1000px; /* Set a fixed height for scrolling */
-    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 1000px;
+    overflow-y: auto;
 }
 
 .submit {
@@ -112,18 +54,54 @@ p, label{
     margin: 20px auto;
     background-color: rgb(103, 58, 183);
     border: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+
+    &:not(:disabled):active {
+        background-color: #6c4fe1;
+    }
+
+    @keyframes clickEffect {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(0.95);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
 }
+
 .small-text {
     font-size: smaller;
     color: rgb(104, 94, 94);
 }
-body, h1, h2, p, label, small, input {
-font-family: 'Roboto', sans-serif;
+
+.radio {
+    accent-color: black;
 }
-    .radio{
-        accent-color: black;
+
+/* Add additional styling for responsiveness as needed */
+@media only screen and (min-width: 993px) {
+    .gform, .gform1, .gform2 {
+        width: 50%;
     }
+
+    .form-control {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    .gform, .gform1, .gform2 {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .gform, .gform1, .gform2 {
+        width: 100%;
+    }
+}
