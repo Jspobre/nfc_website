@@ -4,20 +4,22 @@ body {
 
 h1, h2, p, label{
     font-family: 'Roboto', sans-serif;
+    word-wrap: break-word; /* Add this line */
 }
 
 
 .input-div input {
-    width: 450px;
+    width: 100%; /* Make the input take 100% of the width of its container */
+    max-width: 450px; /* Limit the maximum width if needed */
     border: 0;
     border-bottom: 1.5px solid silver;
     outline: 0;
     border-radius: none;
     margin-top: 10px;
 }
+
 .gform, .gform1, .gform2 {
     width: 100%;
-    max-width: 750px;
     border: 1px solid #e6e4e4;
     padding: 20px;
     border-radius: 8px;
@@ -29,20 +31,6 @@ h1, h2, p, label{
     border-top: 8px solid  rgb(103, 58, 183);
 
 }
-
-
-.form-control {
-    border: none;
-    border-bottom: 2px solid #e2e0e0;
-    border-radius: 0;
-    box-shadow: none;
-    background-color: transparent;
-    height: 40px;
-    width: 100%;
-    padding: 0;
-    outline: none; /* Remove the default focus outline */
-}
-
 
 .form-container {
     max-height: 1000px;
@@ -77,14 +65,36 @@ h1, h2, p, label{
     }
 }
 
-.small-text {
-    font-size: smaller;
-    color: rgb(104, 94, 94);
-}
 
 .radio {
     accent-color: black;
+  
 }
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.small-text {
+    font-size: smaller;
+    color: rgb(104, 94, 94);
+    max-width: 100%; /* Add this line */
+    overflow-wrap: break-word;
+}
+/* Add this style to the container for the radio button and label */
+.gform2 .form-group div {
+    display: flex;
+    align-items: center;
+}
+
+/* Additional styles for the label to prevent it from wrapping to the next line */
+.gform2 .form-group label {
+    flex: 1; /* Allow the label to grow and take available space */
+    padding: 5px;
+    margin-left: 10px; /* Add some spacing between the radio button and label */
+}
+
+
 
 /* Add additional styling for responsiveness as needed */
 @media only screen and (min-width: 993px) {
