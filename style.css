@@ -9,8 +9,7 @@ h1, h2, p, label{
 
 
 .input-div input {
-    width: 100%; /* Make the input take 100% of the width of its container */
-    max-width: 450px; /* Limit the maximum width if needed */
+    width: 80%; /* Make the input take 100% of the width of its container */
     border: 0;
     border-bottom: 1.5px solid silver;
     outline: 0;
