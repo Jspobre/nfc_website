@@ -2,10 +2,19 @@ body {
     background-color: rgb(254, 246, 255);
 }
 
-h1, h2, p, label {
+h1, h2, p, label{
     font-family: 'Roboto', sans-serif;
 }
 
+
+.input-div input {
+    width: 450px;
+    border: 0;
+    border-bottom: 1.5px solid silver;
+    outline: 0;
+    border-radius: none;
+    margin-top: 10px;
+}
 .gform, .gform1, .gform2 {
     width: 100%;
     max-width: 750px;
@@ -20,14 +29,7 @@ h1, h2, p, label {
     border-top: 8px solid  rgb(103, 58, 183);
 
 }
-.gform-header {
-    position: relative;
-    width: 750px;
-    background-color: rgb(103, 58, 183);
-    padding: 4px;
-    border-radius: 8px 8px 0 0;
-    margin-bottom: -6px;
-}
+
 
 .form-control {
     border: none;
@@ -38,8 +40,9 @@ h1, h2, p, label {
     height: 40px;
     width: 100%;
     padding: 0;
-    outline: none;
+    outline: none; /* Remove the default focus outline */
 }
+
 
 .form-container {
     max-height: 1000px;
