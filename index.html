@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>      
-            <div class="container-fluid mt-2">
+            <!-- <div class="container-fluid mt-2">
                 <div class="gform2 mx-auto">
                     <div class="form-group mb-3">
                         <label for="isIrregular" class="form-label">Irregular Student</label>
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="container-fluid mt-2">
                 <div class="gform2 mx-auto">
                     <div class="form-group mb-3">
@@ -190,7 +190,6 @@
     // Get form values
     const student_num = document.getElementById('student_num').value;
     const full_name = document.getElementById('full_name').value;
-    const irregularStudent = document.querySelector('input[name="irregularStudent"]:checked').value;
     const course = document.querySelector('input[name="course"]:checked').value;
     const year = document.querySelector('input[name="year"]:checked').value;
     const block = document.querySelector('input[name="block"]:checked').value;
@@ -201,7 +200,7 @@
             block: block,
             course: course,
             full_name: full_name,
-            isIrregular: irregularStudent,
+            nfc_written: 'false',
             student_num: student_num,
             year_level: year
         });
@@ -218,7 +217,6 @@
         // Clear the form
         document.getElementById('student_num').value = '';
         document.getElementById('full_name').value = '';
-        document.querySelector('input[name="irregularStudent"]:checked').checked = false;
         document.querySelector('input[name="course"]:checked').checked = false;
         document.querySelector('input[name="year"]:checked').checked = false;
         document.querySelector('input[name="block"]:checked').checked = false;
