@@ -42,7 +42,7 @@
                     <div class="form-group mb-3">
                         <label for="student_num" class="form-label">BU Student Number</label>
                         <div class="input-div">
-                            <input type="text" id="student_num" name="student_num"  placeholder="Your student number">
+                            <input type="text" id="student_num" name="student_num"  placeholder="Your student number" required>
                         </div>
                  
                     </div>
@@ -54,7 +54,7 @@
                         <label for="full_name" class="form-label">Student Name</label><br>
                         <small class="form-text text-muted">Ex. Last Name, First Name, MI. Extension Name (eg. JR, II)</small>          
                         <div class="input-div">
-                             <input type="text" id="full_name" name="full_name"  placeholder="Your student name">
+                             <input type="text" id="full_name" name="full_name"  placeholder="Your student name" required>
                             </div>
                     </div>
                 </div>
@@ -79,19 +79,19 @@
                     <div class="form-group mb-3">
                         <label for="course_option" class="form-label">Course</label>
                         <div>
-                            <input type="radio" class="radio" id="bscs" name="course" value="Bachelor of Science in Computer Science">
+                            <input type="radio" class="radio" id="bscs" name="course" value="Bachelor of Science in Computer Science" required>
                             <label for="bscs" class="small-text">Bachelor of Science in Computer Science</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="bsis" name="course" value="Bachelor of Science in Information System">
+                            <input type="radio" class="radio" id="bsis" name="course" value="Bachelor of Science in Information System" required>
                             <label for="bsis" class="small-text">Bachelor of Science in Information System</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="bsit" name="course" value="Bachelor of Science in Information Technology">
+                            <input type="radio" class="radio" id="bsit" name="course" value="Bachelor of Science in Information Technology" required>
                             <label for="bsit" class="small-text">Bachelor of Science in Information Technology</label>
                         </div>
                             <div>
-                                <input type="radio" class="radio" id="bsita" name="course" value="Bachelor of Science in Information Technology major in Animation">
+                                <input type="radio" class="radio" id="bsita" name="course" value="Bachelor of Science in Information Technology major in Animation" required>
                                 <label for="bsita" class="small-text">Bachelor of Science in Information Technology major in Animation</label>
             
                             </div>
@@ -103,19 +103,19 @@
                     <div class="form-group mb-3">
                         <label for="year_option" class="form-label">Year Level</label>
                         <div>
-                            <input type="radio" class="radio" id="1" name="year" value="1st Year">
+                            <input type="radio" class="radio" id="1" name="year" value="1st Year" required>
                             <label for="1" class="small-text">1st Year</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="2" name="year" value="2nd Year">
+                            <input type="radio" class="radio" id="2" name="year" value="2nd Year" required>
                             <label for="2" class="small-text">2nd Year</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="3" name="year" value="3rd Year">
+                            <input type="radio" class="radio" id="3" name="year" value="3rd Year" required>
                             <label for="3" class="small-text">3rd Year</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="4" name="year" value="4th Year">
+                            <input type="radio" class="radio" id="4" name="year" value="4th Year" required>
                             <label for="4" class="small-text">4th Year</label>
                         </div>
                     </div>
@@ -126,19 +126,19 @@
                     <div class="form-group mb-3">
                         <label for="block_option" class="form-label">Block</label>
                         <div>
-                            <input type="radio" class="radio" id="A" name="block" value="A">
+                            <input type="radio" class="radio" id="A" name="block" value="A" required>
                             <label for="A" class="small-text">A</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="B" name="block" value="B">
+                            <input type="radio" class="radio" id="B" name="block" value="B" required>
                             <label for="B" class="small-text">B</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="C" name="block" value="C">
+                            <input type="radio" class="radio" id="C" name="block" value="C" required>
                             <label for="C" class="small-text">C</label>
                         </div>
                         <div>
-                            <input type="radio" class="radio" id="D" name="block" value="D">
+                            <input type="radio" class="radio" id="D" name="block" value="D" required>
                             <label for="D" class="small-text">D</label>
                         </div>
                     </div>
@@ -156,13 +156,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-<!-- ... (your HTML code remains unchanged) ... -->
 
-<!-- ... (your HTML code remains unchanged) ... -->
 <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, addDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -184,59 +183,76 @@
 
 
     // Add an event listener to the submit button
+
     document.querySelector('.submit').addEventListener('click', async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+        e.preventDefault(); // Prevent the default form submission behavior
+    
+        // Get form values
+        const student_num = document.getElementById('student_num').value;
+        const full_name = document.getElementById('full_name').value;
+        const course = document.querySelector('input[name="course"]:checked').value;
+        const year = document.querySelector('input[name="year"]:checked').value;
+        const block = document.querySelector('input[name="block"]:checked').value;
 
-    // Get form values
-    const student_num = document.getElementById('student_num').value;
-    const full_name = document.getElementById('full_name').value;
-    const course = document.querySelector('input[name="course"]:checked').value;
-    const year = document.querySelector('input[name="year"]:checked').value;
-    const block = document.querySelector('input[name="block"]:checked').value;
+        try {
+            // Check if document with student_num and full_name already exists
+            const studentQuery = await getDocs(query(collection(db, 'students'), 
+                where('student_num', '==', student_num),
+                where('full_name', '==', full_name),
+                where('course', '==', course),
+                where('year_level', '==', year),
+                where('block', '==', block)
+            ));
 
-    try {
-        // Add data to Firestore collection
-        await addDoc(collection(db, 'students'), {
-            block: block,
-            course: course,
-            full_name: full_name,
-            nfc_written: false,
-            student_num: student_num,
-            year_level: year
-        });
+            if (studentQuery.size > 0) {
+                // Document already exists, show error alert using Swal
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Student with the given details already exists',
+                    showConfirmButton: false,
+                    timer: 2500 // Close after 2 seconds
+                });
+            } else {
+                // Document doesn't exist, add data to Firestore collection
+                await addDoc(collection(db, 'students'), {
+                    block: block,
+                    course: course,
+                    full_name: full_name,
+                    nfc_written: false,
+                    student_num: student_num,
+                    year_level: year
+                });
 
-        // Show success alert using Swal
-        Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: 'Student added successfully.',
-            showConfirmButton: false,
-            timer: 2000 // Close after 2 seconds
-        });
+                // Show success alert using Swal
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Student added successfully.',
+                    showConfirmButton: false,
+                    timer: 2000 // Close after 2 seconds
+                });
 
-        // Clear the form
-        document.getElementById('student_num').value = '';
-        document.getElementById('full_name').value = '';
-        document.querySelector('input[name="course"]:checked').checked = false;
-        document.querySelector('input[name="year"]:checked').checked = false;
-        document.querySelector('input[name="block"]:checked').checked = false;
+                // Clear the form
+                document.getElementById('student_num').value = '';
+                document.getElementById('full_name').value = '';
+                document.querySelector('input[name="course"]:checked').checked = false;
+                document.querySelector('input[name="year"]:checked').checked = false;
+                document.querySelector('input[name="block"]:checked').checked = false;
+            }
+        } catch (error) {
+            console.error('Error checking/adding document: ', error);
 
-    } catch (error) {
-        console.error('Error adding document: ', error);
-
-        // Show error alert using Swal
-        Swal.fire({
-            icon: 'error',
-            title: 'Error!',
-            text: 'Error adding student.',
-            showConfirmButton: false,
-            timer: 2000 // Close after 2 seconds
-        });
-    }
-});
-
-
-
+            // Show error alert using Swal
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Error checking/adding student.',
+                showConfirmButton: false,
+                timer: 2000 // Close after 2 seconds
+            });
+        }
+    });
 </script>
 
 </html>
