@@ -74,27 +74,31 @@
                     </div>
                 </div>
             </div> -->
+            <div>
+
+            </div>
             <div class="container-fluid mt-2">
                 <div class="gform2 mx-auto">
                     <div class="form-group mb-3">
                         <label for="course_option" class="form-label">Course</label>
-                        <div>
-                            <input type="radio" class="radio" id="bscs" name="course" value="Bachelor of Science in Computer Science" required>
-                            <label for="bscs" class="small-text">Bachelor of Science in Computer Science</label>
-                        </div>
-                        <div>
-                            <input type="radio" class="radio" id="bsis" name="course" value="Bachelor of Science in Information System" required>
-                            <label for="bsis" class="small-text">Bachelor of Science in Information System</label>
-                        </div>
-                        <div>
-                            <input type="radio" class="radio" id="bsit" name="course" value="Bachelor of Science in Information Technology" required>
-                            <label for="bsit" class="small-text">Bachelor of Science in Information Technology</label>
-                        </div>
-                            <div>
-                                <input type="radio" class="radio" id="bsita" name="course" value="Bachelor of Science in Information Technology major in Animation" required>
-                                <label for="bsita" class="small-text">Bachelor of Science in Information Technology major in Animation</label>
-            
-                            </div>
+                        <select id="course" name="course" class="form-select" required>
+                            <option value="" selected disabled>Select a course</option>
+                            <option value="Bachelor of Science in Computer Science">Bachelor of Science in Computer Science</option>
+                            <option value="Bachelor of Science in Information System">Bachelor of Science in Information System</option>
+                            <option value="Bachelor of Science in Information Technology">Bachelor of Science in Information Technology</option>
+                            <option value="Bachelor of Science in Information Technology major in Animation">Bachelor of Science in Information Technology major in Animation</option>
+                            <option value="Bachelor of Science in Electronics Engineering">Bachelor of Science in Electronics Engineering</option>
+                            <option value="Bachelor of Science in Computer Engineering">Bachelor of Science in Computer Engineering</option>
+                            <option value="Bachelor of Elementary Education">Bachelor of Elementary Education</option>
+                            <option value="Bachelor of Secondary Education major in Math">Bachelor of Secondary Education major in Math</option>
+                            <option value="Bachelor of Secondary Education major in English">Bachelor of Secondary Education major in English</option>
+                            <option value="Bachelor of Technology and Livelihood Education major in ICT">Bachelor of Technology and Livelihood Education major in ICT</option>
+                            <option value="Bachelor of Technology and Livelihood Education major in HE">Bachelor of Technology and Livelihood Education major in HE</option>
+                            <option value="Bachelor of Science in Automotive Technology">Bachelor of Science in Automotive Technology</option>
+                            <option value="Bachelor of Science in Electronics Technology">Bachelor of Science in Electronics Technology</option>
+                            <option value="Bachelor of Science in Entrepreneurship">Bachelor of Science in Entrepreneurship</option>
+                            <option value="Bachelor of Science in Nursing">Bachelor of Science in Nursing</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -188,12 +192,13 @@ import { getFirestore, addDoc, collection, query, where, getDocs } from "https:/
         e.preventDefault(); // Prevent the default form submission behavior
     
         // Get form values
+     // Get form values
         const student_num = document.getElementById('student_num').value;
         const full_name = document.getElementById('full_name').value;
-        const course = document.querySelector('input[name="course"]:checked').value;
+        const courseDropdown = document.getElementById('course'); // Select the dropdown element
+        const course = courseDropdown.options[courseDropdown.selectedIndex].value; // Get the selected value
         const year = document.querySelector('input[name="year"]:checked').value;
         const block = document.querySelector('input[name="block"]:checked').value;
-
         try {
             // Check if document with student_num and full_name already exists
             const studentQuery = await getDocs(query(collection(db, 'students'), 
@@ -234,11 +239,20 @@ import { getFirestore, addDoc, collection, query, where, getDocs } from "https:/
                 });
 
                 // Clear the form
+            // Clear the form
                 document.getElementById('student_num').value = '';
                 document.getElementById('full_name').value = '';
-                document.querySelector('input[name="course"]:checked').checked = false;
+
+                // Reset the selected option for the "course" dropdown
+                const courseDropdown = document.getElementById('course');
+                courseDropdown.selectedIndex = 0;
+
+                // Reset the selected radio button for "year" field
                 document.querySelector('input[name="year"]:checked').checked = false;
+
+                // Reset the selected radio button for "block" field
                 document.querySelector('input[name="block"]:checked').checked = false;
+
             }
         } catch (error) {
             console.error('Error checking/adding document: ', error);
